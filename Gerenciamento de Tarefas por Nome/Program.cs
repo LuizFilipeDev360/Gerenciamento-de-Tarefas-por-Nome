@@ -1,4 +1,5 @@
-﻿using SistemaDeGerenciamentoDeTarefas;
+﻿using Gerenciamento_de_Tarefas_por_Nome;
+using Gerenciamento_de_Tarefas_por_Nome.Menus;
 
 List<Tarefa> listaDeTarefas = new List<Tarefa>();
 listaDeTarefas.Add(new Tarefa("Acordar"));
@@ -38,7 +39,8 @@ void MenuPrincipal()
     {
         case "1":
             Console.Clear();
-            AdicionarTarefa();
+            var MenuAdicionar = new MenuAdicionarTarefa();
+            MenuAdicionar.MostrarMenu(listaDeTarefas);
             VoltarAoMenuPrincipal();
             break;
         case "2":
@@ -184,15 +186,6 @@ void EditarTarefa()
     {
         Console.WriteLine("Tarefa não encontrada");
     }
-}
-
-void AdicionarTarefa()
-{
-    Console.WriteLine("Digite a tarefa que deseja adicionar:");
-    string tarefaParaAdicionar = Console.ReadLine();
-    Tarefa tarefaNova = new Tarefa(tarefaParaAdicionar);
-    listaDeTarefas.Add(tarefaNova);
-    Console.WriteLine("Tarefa adicionada com sucesso!");
 }
 
 void VoltarAoMenuPrincipal()

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaDeGerenciamentoDeTarefas;
+namespace Gerenciamento_de_Tarefas_por_Nome;
 
 internal class Tarefa
 {
