@@ -39,28 +39,32 @@ void MenuPrincipal()
     {
         case "1":
             Console.Clear();
-            var MenuAdicionar = new MenuAdicionarTarefa();
-            MenuAdicionar.MostrarMenu(listaDeTarefas);
+            var menuAdicionar = new MenuAdicionarTarefa();
+            menuAdicionar.MostrarMenu(listaDeTarefas);
             VoltarAoMenuPrincipal();
             break;
         case "2":
             Console.Clear();
-            EditarTarefa();
+            var menuEditar = new MenuEditarTarefa();
+            menuEditar.MostrarMenu(listaDeTarefas);
             VoltarAoMenuPrincipal();
             break;
         case "3":
             Console.Clear();
-            RemoverTarefa();
+            var menuRemover = new MenuRemoverTarefa();
+            menuRemover.MostrarMenu(listaDeTarefas);
             VoltarAoMenuPrincipal();
             break;
         case "4":
             Console.Clear();
-            MarcarConcluidaTarefa();
+            var menuMarcarTarefaConcluida = new MenuMarcarTarefaConcluida();
+            menuMarcarTarefaConcluida.MostrarMenu(listaDeTarefas);
             VoltarAoMenuPrincipal();
             break;
         case "5":
             Console.Clear();
-            FiltrarTarefas();
+            var menuFiltrarTarefas = new MenuFiltrarTarefas();
+            menuFiltrarTarefas.MostrarMenu(listaDeTarefas);
             VoltarAoMenuPrincipal();
             break;
         case "-1":
@@ -73,119 +77,6 @@ void MenuPrincipal()
             break;
     }
 
-}
-
-void MostrarDeAcordoComOFiltro(bool tipoDeFiltro)
-{
-    foreach (Tarefa ta in listaDeTarefas)
-    {
-        if (ta.Concluida == tipoDeFiltro)
-        {
-            string estadoAtual = ta.Concluida ? "Concluida" : "pendente";
-            Console.WriteLine($"    {ta.Nome}({estadoAtual})");
-        }
-    }
-}
-
-void FiltrarTarefas()
-{
-    Console.WriteLine("Digite 1 para filtrar por concluidas");
-    Console.WriteLine("Digite 2 para filtrar por pendentes");
-    string opcaoFiltrar = Console.ReadLine();
-    bool tipoDeFiltro = false;
-
-    switch (opcaoFiltrar)
-    {
-        case "1":
-            tipoDeFiltro = true;
-            MostrarDeAcordoComOFiltro(tipoDeFiltro);
-            break;
-        case "2":
-            tipoDeFiltro = false;
-            MostrarDeAcordoComOFiltro(tipoDeFiltro);
-            break;
-        default:
-            Console.Clear();
-            Console.WriteLine("Opção inválida");
-            break;
-    }
-}
-
-void MarcarConcluidaTarefa()
-{
-    Console.WriteLine("Digite a tarefa que deseja marcar como concluida:");
-    string tarefaParaConcluir = Console.ReadLine();
-    bool encontrado = false;
-
-    foreach (Tarefa ta in listaDeTarefas)
-    {
-        if (ta.Nome == tarefaParaConcluir)
-        {
-            encontrado = true;
-            if(ta.Concluida == false)
-            {
-                ta.Concluida = true;
-                Console.WriteLine($"Tarefa {ta.Nome} concluida com sucesso");
-            }
-            else
-            {
-                Console.WriteLine("A tarefa já está concluida");
-            }
-        }
-    }
-
-    if (encontrado == false)
-    {
-        Console.WriteLine("Tarefa não encontrada");
-    }
-}
-
-void RemoverTarefa()
-{
-    Console.WriteLine("Digite a tarefa que deseja remover:");
-    string tarefaParaRemover = Console.ReadLine();
-    bool encontrado = false;
-    Tarefa objetoParaRemover;
-
-    for (int i = 0; i < listaDeTarefas.Count; i++)
-        {
-            if (listaDeTarefas[i].Nome == tarefaParaRemover)
-            {
-                listaDeTarefas.RemoveAt(i);
-                encontrado = true;
-                Console.WriteLine($"tarefa {tarefaParaRemover} removida com sucesso!");
-                i--;
-            }
-        }
-
-    if (encontrado == false)
-    {
-        Console.WriteLine("Tarefa não encontrada");
-    }
-}
-
-void EditarTarefa()
-{
-    Console.WriteLine("Digite a tarefa que deseja editar:");
-    string tarefaParaEditar = Console.ReadLine();
-    bool encontrado = false;
-
-    foreach (Tarefa ta in listaDeTarefas)
-    {
-        if (ta.Nome == tarefaParaEditar)
-        {
-            Console.WriteLine($"Deseja Editar a tarefa {ta.Nome} para:");
-            string mudancaTarefa = Console.ReadLine();
-            ta.Nome = mudancaTarefa;
-            Console.WriteLine($"Tarefa {tarefaParaEditar} editada para {ta.Nome} com sucesso");
-            encontrado = true;
-        }
-    }
-
-    if (encontrado == false)
-    {
-        Console.WriteLine("Tarefa não encontrada");
-    }
 }
 
 void VoltarAoMenuPrincipal()
